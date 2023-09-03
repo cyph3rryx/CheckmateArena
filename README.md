@@ -68,5 +68,5 @@ Here's how the code works:
 - Move details, including the selected move, the engine's score for the move, and the time taken, are recorded in the game file.
 - The loop continues until the game ends, and the engine is closed.
 
-Make sure to provide the correct path to the Stockfish engine executable (`"D:stockfish\\stockfish-windows-x86-64-avx2.exe"`) and ensure you have write permissions for the output file ("game.txt"). This code provides a simple way to play chess against the Stockfish engine in a text-based interface while recording the game's progress.
+Make sure to provide the correct path to the Stockfish engine executable (`"K:\\Projects\\CheckmateArena\\Engines\\stockfish\\stockfish-windows-x86-64-avx2.exe"`) and ensure you have write permissions for the output file ("game.txt"). This code provides a simple way to play chess against the Stockfish engine in a text-based interface while recording the game's progress.
 
