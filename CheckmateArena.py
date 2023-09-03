@@ -40,17 +40,17 @@ def main():
     board = chess.Board()
 
     # Initialize the chess engine
-    engine = chess.engine.SimpleEngine.popen_uci("K:\\Projects\\CheckmateArena\\Engine\\stockfish\\stockfish-windows-x86-64-avx2.exe") ## using StockFish AI
+    engine = chess.engine.SimpleEngine.popen_uci("D:\\Hacking\\Projects\\Chess Fight\\Engines\\stockfish\\stockfish-windows-x86-64-avx2.exe")
 
     # Check if the directory exists
-    if not os.path.exists("K:\\Projects\\CheckmateArena"):
-        os.makedirs("K:\\Projects\\CheckmateArena")
+    if not os.path.exists("D:\\Hacking\\Projects\\Chess Fight\\chess-data"):
+        os.makedirs("D:\\Hacking\\Projects\\Chess Fight\\chess-data")
 
     # File name as the current date and time
     filename = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + ".txt"
 
     # Open the file to record the game
-    with open("D:\\Projects\\CheckmateArena\\" + filename, "w") as file:
+    with open("D:\\Hacking\\Projects\\Chess Fight\\chess-data\\" + filename, "w") as file:
         # Game loop
         while not board.is_game_over():
             # Display the board with improved UI
@@ -58,14 +58,14 @@ def main():
 
             # Let the engine decide a move
             start = time.time()
-            result = engine.play(board, chess.engine.Limit(time=0.5))
+            result = engine.play(board, chess.engine.Limit(time=0.1))
             end = time.time()
 
             # Make the move
             board.push(result.move)
 
             # Write the move and the score to the file
-            info = engine.analyse(board, chess.engine.Limit(time=0.5))
+            info = engine.analyse(board, chess.engine.Limit(time=0.1))
             file.write(f"Move: {result.move} Score: {info['score']} Time: {end - start}\n")
 
     # Print game result
