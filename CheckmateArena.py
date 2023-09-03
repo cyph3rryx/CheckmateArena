@@ -40,17 +40,17 @@ def main():
     board = chess.Board()
 
     # Initialize the chess engine
-    engine = chess.engine.SimpleEngine.popen_uci("D:\\Hacking\\Projects\\Chess Fight\\Engines\\stockfish\\stockfish-windows-x86-64-avx2.exe")
+    engine = chess.engine.SimpleEngine.popen_uci("\\path\\to\\your\\engine")
 
     # Check if the directory exists
-    if not os.path.exists("D:\\Hacking\\Projects\\Chess Fight\\chess-data"):
-        os.makedirs("D:\\Hacking\\Projects\\Chess Fight\\chess-data")
+    if not os.path.exists("\\path\\to\\your\\directory"):
+        os.makedirs("\\path\\to\\your\\directory")
 
     # File name as the current date and time
     filename = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + ".txt"
 
     # Open the file to record the game
-    with open("D:\\Hacking\\Projects\\Chess Fight\\chess-data\\" + filename, "w") as file:
+    with open("\\path\\to\\your\\directory\\" + filename, "w") as file:
         # Game loop
         while not board.is_game_over():
             # Display the board with improved UI
