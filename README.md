@@ -56,7 +56,7 @@ This code has a Python script that allows you to play chess against the Stockfis
 9. **Game Completion:**
     - After the game ends, close the engine using `engine.quit()`.
 
-### Implementation
+### Implementation:
 
 Here's how the code works:
 
@@ -70,3 +70,4 @@ Here's how the code works:
 
 Make sure to provide the correct path to the Stockfish engine executable (`"K:\\Projects\\CheckmateArena\\Engines\\stockfish\\stockfish-windows-x86-64-avx2.exe"`) and ensure you have write permissions for the output file ("game.txt"). This code provides a simple way to play chess against the Stockfish engine in a text-based interface while recording the game's progress.
 
+## In Development!
