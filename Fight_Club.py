@@ -4,7 +4,7 @@ import datetime
 import os
 import time
 
-# Define ASCII art for chess pieces
+# Define ASCII art for chess pieces with styling
 PIECE_ART = {
     None: " . ",
     chess.PAWN: " ♟ ",
@@ -26,9 +26,9 @@ def print_board(board):
             if piece:
                 symbol = PIECE_ART[piece.piece_type]
                 if piece.color == chess.BLACK:
-                    print(f"{symbol}", end="")
+                    print(f"\033[30m{symbol}\033[0m", end="")  # Black pieces in black
                 else:
-                    print(f"{symbol.upper()}", end="")
+                    print(f"\033[37m{symbol}\033[0m", end="")  # White pieces in white
             else:
                 print(PIECE_ART[None], end="")
         print("|")
@@ -40,18 +40,18 @@ def main():
     board = chess.Board()
 
     # Define engine paths and time controls
-    stockfish_path = "K:\\Engines\\stockfish\\stockfish-windows-x86-64-avx2.exe"
-    komodo_path = "K:\\Engines\\komodo-14\\Windows\\komodo-14.1-64bit.exe"
+    stockfish_path = "D:\\Hacking\\Projects\\Chess Fight\\Engines\\stockfish\\stockfish-windows-x86-64-avx2.exe"
+    komodo_path = "D:\\Hacking\\Projects\\Chess Fight\\Engines\\komodo-14\\Windows\\komodo-14.1-64bit.exe"
     
-    stockfish_time = 0.1  # Adjust time control as needed (in seconds)
-    komodo_time = 0.1    # Adjust time control as needed (in seconds)
+    stockfish_time = 1.0  # Adjust time control as needed (in seconds)
+    komodo_time = 1.0   # Adjust time control as needed (in seconds)
 
     # Initialize the chess engines
     stockfish_engine = chess.engine.SimpleEngine.popen_uci(stockfish_path)
     komodo_engine = chess.engine.SimpleEngine.popen_uci(komodo_path)
 
     # Check if the directory exists
-    save_folder = "K:\\Projects\\chess-data"  # Specify the folder
+    save_folder = "D:\\Hacking\\Projects\\Chess Fight\\chess-data"  # Specify the folder
     if not os.path.exists(save_folder):
         os.makedirs(save_folder)
 
