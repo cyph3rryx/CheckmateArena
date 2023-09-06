@@ -4,7 +4,6 @@ import datetime
 import os
 import time
 
-# Define ASCII art for chess pieces with styling
 PIECE_ART = {
     None: " . ",
     chess.PAWN: " ♟ ",
