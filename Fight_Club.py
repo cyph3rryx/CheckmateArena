@@ -3,6 +3,7 @@ import chess.engine
 import datetime
 import os
 import time
+import numpy as np
 
 PIECE_ART = {
     None: " . ",
@@ -34,13 +35,34 @@ def print_board(board):
     print(" +------------------------+")
     print("   a  b  c  d  e  f  g  h")
 
+# Function to convert the chess board to a matrix
+def board_to_matrix(board):
+    pgn = board.epd()
+    foo = []
+    pieces = pgn.split(" ", 1)[0]
+    rows = pieces.split("/")
+    for r in rows:
+        foo2 = []
+        for p in r:
+            if p.isdigit():
+                for i in range(0, int(p)):
+                    foo2.append('.')
+            else:
+                foo2.append(p)
+        foo.append(foo2)
+    return np.array(foo)
+
+# Function to convert a move to a pair of coordinates
+def move_to_coordinates(move):
+    return [move.from_square, move.to_square]
+
 def main():
     # Initialize the chess board
     board = chess.Board()
 
     # Define engine paths and time controls
-    stockfish_path = "D:\\Hacking\\Projects\\Chess Fight\\Engines\\stockfish\\stockfish-windows-x86-64-avx2.exe"
-    komodo_path = "D:\\Hacking\\Projects\\Chess Fight\\Engines\\komodo-14\\Windows\\komodo-14.1-64bit.exe"
+    stockfish_path = "\\path\\to\\stockfish-engine"
+    komodo_path = "\\path\\to\\komodo-engine"
     
     stockfish_time = 1.0  # Adjust time control as needed (in seconds)
     komodo_time = 1.0   # Adjust time control as needed (in seconds)
@@ -50,7 +72,7 @@ def main():
     komodo_engine = chess.engine.SimpleEngine.popen_uci(komodo_path)
 
     # Check if the directory exists
-    save_folder = "D:\\Hacking\\Projects\\Chess Fight\\chess-data"  # Specify the folder
+    save_folder = "\\path\\to\\folder"  # Specify the folder
     if not os.path.exists(save_folder):
         os.makedirs(save_folder)
 
@@ -81,8 +103,12 @@ def main():
                 # Make the move
                 board.push(result.move)
 
-                # Write the move and the time taken to the file
-                file.write(f"Move: {result.move} Time: {end - start:.2f} seconds\n")
+                # Convert the board and the move to their matrix representations
+                board_matrix = board_to_matrix(board)
+                move_coordinates = move_to_coordinates(result.move)
+
+                # Write the preprocessed data to the file
+                file.write(f"Board: {board_matrix.tolist()} Move: {move_coordinates}\n")
             else:
                 print("No legal moves left. Game over.")
                 break
