@@ -12,6 +12,7 @@ import cairosvg
 import tkinter.ttk as ttk
 import chess.polyglot
 
+
 class ChessAnalyzer:
     def __init__(self, stockfish_path, opening_book_path):
         self.stockfish_path = stockfish_path
