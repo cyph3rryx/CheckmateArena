@@ -14,7 +14,6 @@ PIECE_ART = {
     chess.QUEEN: " ♛ ",
     chess.KING: " ♚ ",
 }
-
 # Function to display the chessboard with styling
 def print_board(board):
     print("   a  b  c  d  e  f  g  h")
