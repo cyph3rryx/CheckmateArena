@@ -68,4 +68,17 @@ def main():
             info = engine.analyse(board, chess.engine.Limit(time=0.1))
             file.write(f"Move: {result.move} Score: {info['score']} Time: {end - start}\n")
 
-  
+    # Print game result
+    result = board.result()
+    if result == '1-0':
+        print("White won the game")
+    elif result == '0-1':
+        print("Black won the game")
+    else:
+        print("The game was a draw")
+
+    # Close the engine
+    engine.quit()
+
+if __name__ == "__main__":
+    main()
